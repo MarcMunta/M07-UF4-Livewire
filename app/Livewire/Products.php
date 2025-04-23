@@ -39,17 +39,20 @@ class Products extends Component
     public function save()
     {
         $this->validate();
-
+    
+        $priceFormatted = str_replace(',', '.', $this->price);
+    
         Product::updateOrCreate(['id' => $this->product_id], [
             'name' => $this->name,
             'description' => $this->description,
-            'price' => $this->price,
+            'price' => $priceFormatted,
         ]);
-
+    
         session()->flash('message', $this->product_id ? 'Product is updated.' : 'Product is added.');
-
+    
         $this->resetFields();
     }
+    
 
     public function edit($id)
     {
@@ -63,7 +66,7 @@ class Products extends Component
 
         $this->description = $product->description;
 
-        $this->price = $product->price;
+        $this->price = str_replace(',', '.', number_format($product->price, 2, '.', ''));
 
         $this->isEdit = true;
     }
