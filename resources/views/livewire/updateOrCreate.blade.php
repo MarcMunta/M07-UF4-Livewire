@@ -13,7 +13,7 @@
                     <div class="mb-3 row">
                         <label for="name" class="col-md-4 col-form-label text-md-end text-start">Product Name</label>
                         <div class="col-md-6">
-                          <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" wire:model="name">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" wire:model="name">
                             @if ($errors->has('name'))
                                 <span class="text-danger">{{ $errors->first('name') }}</span>
                             @endif
@@ -29,7 +29,17 @@
                             @endif
                         </div>
                     </div>
-                    
+
+                    <div class="mb-3 row">
+                        <label for="price" class="col-md-4 col-form-label text-md-end text-start">Product Price</label>
+                        <div class="col-md-6">
+                            <input type="number" step="0.01" class="form-control @error('price') is-invalid @enderror" id="price" wire:model="price">
+                            @if ($errors->has('price'))
+                                <span class="text-danger">{{ $errors->first('price') }}</span>
+                            @endif
+                        </div>
+                    </div>
+
                     <div class="mb-3 row">
                         <button type="submit" class="col-md-3 offset-md-5 btn btn-success">
                              Save
@@ -48,7 +58,7 @@
                     <div class="mb-3 row"> 
                         <span wire:loading class="col-md-3 offset-md-5 text-primary">Processing...</span>
                     </div>
-                    
+
                 </form>
             </div>
         </div>
